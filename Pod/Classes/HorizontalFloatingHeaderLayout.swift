@@ -161,10 +161,14 @@ public class HorizontalFloatingHeaderLayout: UICollectionViewLayout {
         
         func lastItemMaxX()->CGFloat{
             let lastSection = collectionView.numberOfSections - 1
-            let lastIndexInSection = collectionView.numberOfItems(inSection:lastSection) - 1
-            if let lastItemAttributes = layoutAttributesForItem(at: IndexPath(row: lastIndexInSection, section: lastSection)){
-                return lastItemAttributes.frame.maxX
-            }else{
+            if lastSection >= 0 {
+                let lastIndexInSection = collectionView.numberOfItems(inSection:lastSection) - 1
+                if let lastItemAttributes = layoutAttributesForItem(at: IndexPath(row: lastIndexInSection, section: lastSection)){
+                    return lastItemAttributes.frame.maxX
+                }else{
+                    return 0
+                }
+            } else {
                 return 0
             }
         }
